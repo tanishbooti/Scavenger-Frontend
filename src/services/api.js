@@ -2,7 +2,7 @@ import axios from 'axios';
 import { store } from '../store';
 import { refreshAccessToken, logout } from '../store/slices/authSlice';
 
-const API_BASE_URL = 'https://scavenger-backend-h8z8.onrender.com';
+const API_BASE_URL = 'https://scavenger-backend-h8z8.onrender.com/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
