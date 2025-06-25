@@ -2,7 +2,7 @@ import axios from 'axios';
 import { store } from '../store';
 import { refreshAccessToken, logout } from '../store/slices/authSlice';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api';
+const API_BASE_URL = 'https://scavenger-backend-h8z8.onrender.com';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -11,7 +11,7 @@ const api = axios.create({
   },
 });
 
-// Request interceptor to add auth token
+
 api.interceptors.request.use(
   (config) => {
     const token = store.getState().auth.accessToken;
@@ -23,7 +23,7 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Response interceptor to handle token refresh
+
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -48,7 +48,7 @@ api.interceptors.response.use(
   }
 );
 
-// Auth APIs
+
 export const authAPI = {
   login: (credentials) =>
     api.post('/users/login', credentials),
@@ -69,7 +69,7 @@ export const authAPI = {
     api.post('/users/logout'),
 };
 
-// Scam Detection APIs
+
 export const scamAPI = {
   checkText: (text) =>
     api.post('/scam/check-text', { text }),
